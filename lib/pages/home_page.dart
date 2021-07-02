@@ -156,6 +156,15 @@ class _HomePageState extends State<HomePage> {
                           setState(() {
                             _unit2Value = value;
                             print(_unit2Value.name);
+                            if (_textField1.text.isNotEmpty) {
+                              if (_ParameterValue.name == 'Time') {
+                                var result = Converter.convertTime(
+                                    _unit1Value.name,
+                                    _unit2Value.name,
+                                    _value1);
+                                _textField2.text = result;
+                              }
+                            }
                           });
                         },
                       ),
