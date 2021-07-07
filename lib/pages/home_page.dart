@@ -35,7 +35,7 @@ class _HomePageState extends State<HomePage> {
           Container(
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(10),
-              color: Colors.white,
+              color: Colors.blue,
               border: Border.all(),
             ),
             padding: EdgeInsets.only(left: 10, right: 10),
@@ -47,11 +47,11 @@ class _HomePageState extends State<HomePage> {
                 items: GetListData.buildParameterMenu(paramList),
                 onChanged: (value) {
                   setState(() {
-                    unit = [];
-                    unitList = [];
-                    print(GetListData.buildParameterMenu(paramList));
                     _ParameterValue = value;
-                    print(_ParameterValue.name);
+                    if (_unit1Value != null || _unit2Value != null) {
+                      _unit1Value = null;
+                      _unit2Value = null;
+                    }
                     if (_ParameterValue.name == 'Length') {
                       unit = GetListData.lengthItemsList;
                       unitList = GetListData.buildlengthMenu(unit);
@@ -59,6 +59,7 @@ class _HomePageState extends State<HomePage> {
                       unit = GetListData.timeItemsList;
                       unitList = GetListData.buildlengthMenu(unit);
                     }
+                    print(GetListData.buildParameterMenu(paramList));
                     print(unitList);
                   });
                 },
@@ -84,6 +85,10 @@ class _HomePageState extends State<HomePage> {
                         var result = Converter.convertTime(
                             _unit1Value.name, _unit2Value.name, _value1);
                         _textField2.text = result;
+                      } else if (_ParameterValue.name == 'Length') {
+                        var result = Converter.convertLength(
+                            _unit1Value.name, _unit2Value.name, _value1);
+                        _textField2.text = result;
                       }
                     },
                   ),
@@ -94,6 +99,7 @@ class _HomePageState extends State<HomePage> {
                   padding: const EdgeInsets.all(20.0),
                   child: TextField(
                     controller: _textField2,
+                    enabled: false,
                     decoration: InputDecoration(
                       hintText: "Enter Value",
                     ),
