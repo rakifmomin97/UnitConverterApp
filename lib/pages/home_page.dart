@@ -11,6 +11,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   var _ParameterValue;
+  bool valError = false;
   var _unit1Value;
   var _unit2Value;
   var _value1;
@@ -31,7 +32,7 @@ class _HomePageState extends State<HomePage> {
       ),
       body: Column(
         children: [
-          40.heightBox,
+          60.heightBox,
           Container(
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(10),
@@ -48,16 +49,18 @@ class _HomePageState extends State<HomePage> {
                 onChanged: (value) {
                   setState(() {
                     _ParameterValue = value;
+                    _textField1.text = "";
+                    _textField2.text = "";
                     if (_unit1Value != null || _unit2Value != null) {
                       _unit1Value = null;
                       _unit2Value = null;
                     }
                     if (_ParameterValue.name == 'Length') {
                       unit = GetListData.lengthItemsList;
-                      unitList = GetListData.buildlengthMenu(unit);
+                      unitList = GetListData.buildMenu(unit);
                     } else if (_ParameterValue.name == 'Time') {
                       unit = GetListData.timeItemsList;
-                      unitList = GetListData.buildlengthMenu(unit);
+                      unitList = GetListData.buildMenu(unit);
                     }
                     print(GetListData.buildParameterMenu(paramList));
                     print(unitList);
@@ -77,18 +80,38 @@ class _HomePageState extends State<HomePage> {
                     controller: _textField1,
                     decoration: InputDecoration(
                       hintText: "Enter Value",
+                      errorText: valError
+                          ? "Please select parameter or unit first"
+                          : null,
                     ),
+                    keyboardType: TextInputType.number,
                     onChanged: (value) {
                       _value1 = value;
-                      print(_value1);
-                      if (_ParameterValue.name == 'Time') {
-                        var result = Converter.convertTime(
-                            _unit1Value.name, _unit2Value.name, _value1);
-                        _textField2.text = result;
-                      } else if (_ParameterValue.name == 'Length') {
-                        var result = Converter.convertLength(
-                            _unit1Value.name, _unit2Value.name, _value1);
-                        _textField2.text = result;
+                      if (_textField1.text.isEmpty) {
+                        _textField2.text = "";
+                        setState(() {
+                          valError = false;
+                        });
+                      } else if (_ParameterValue == null ||
+                          _unit1Value == null ||
+                          _unit2Value == null) {
+                        setState(() {
+                          valError = true;
+                        });
+                      } else {
+                        setState(() {
+                          valError = false;
+                        });
+
+                        if (_ParameterValue.name == 'Time') {
+                          var result = Converter.convertTime(
+                              _unit1Value.name, _unit2Value.name, _value1);
+                          _textField2.text = result;
+                        } else if (_ParameterValue.name == 'Length') {
+                          var result = Converter.convertLength(
+                              _unit1Value.name, _unit2Value.name, _value1);
+                          _textField2.text = result;
+                        }
                       }
                     },
                   ),
@@ -134,7 +157,8 @@ class _HomePageState extends State<HomePage> {
                         onChanged: (value) {
                           setState(() {
                             _unit1Value = value;
-                            print(_unit1Value.name);
+                            _textField1.text = "";
+                            _textField2.text = "";
                           });
                         },
                       ),
@@ -165,6 +189,12 @@ class _HomePageState extends State<HomePage> {
                             if (_textField1.text.isNotEmpty) {
                               if (_ParameterValue.name == 'Time') {
                                 var result = Converter.convertTime(
+                                    _unit1Value.name,
+                                    _unit2Value.name,
+                                    _value1);
+                                _textField2.text = result;
+                              } else if (_ParameterValue.name == 'Length') {
+                                var result = Converter.convertLength(
                                     _unit1Value.name,
                                     _unit2Value.name,
                                     _value1);
