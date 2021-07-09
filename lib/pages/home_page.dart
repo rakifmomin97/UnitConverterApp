@@ -61,6 +61,9 @@ class _HomePageState extends State<HomePage> {
                     } else if (_ParameterValue.name == 'Time') {
                       unit = GetListData.timeItemsList;
                       unitList = GetListData.buildMenu(unit);
+                    } else if (_ParameterValue.name == 'Area') {
+                      unit = GetListData.areaItemsList;
+                      unitList = GetListData.buildMenu(unit);
                     }
                   });
                 },
@@ -107,6 +110,10 @@ class _HomePageState extends State<HomePage> {
                           _textField2.text = result;
                         } else if (_ParameterValue.name == 'Length') {
                           var result = Converter.convertLength(
+                              _unit1Value.name, _unit2Value.name, _value1);
+                          _textField2.text = result;
+                        } else if (_ParameterValue.name == 'Area') {
+                          var result = Converter.convertArea(
                               _unit1Value.name, _unit2Value.name, _value1);
                           _textField2.text = result;
                         }
@@ -193,6 +200,13 @@ class _HomePageState extends State<HomePage> {
                                 _textField2.text = result;
                               } else if (_ParameterValue.name == 'Length') {
                                 var result = Converter.convertLength(
+                                    _unit1Value.name,
+                                    _unit2Value.name,
+                                    _value1);
+                                _textField2.text = result;
+                              }
+                              else if (_ParameterValue.name == 'Area') {
+                                var result = Converter.convertArea(
                                     _unit1Value.name,
                                     _unit2Value.name,
                                     _value1);
