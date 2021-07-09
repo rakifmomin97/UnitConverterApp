@@ -6,22 +6,49 @@ class Converter {
       return result;
     }
     var number = int.parse(value);
-    print("Number : $number");
 
     if (unit1 == unit2) {
       result = number.toStringAsFixed(3);
-    } else if (unit1 == 'Seconds' && unit2 == 'Minutes') {
+    } else if (unit1 == 'Second' && unit2 == 'Minute') {
       result = (number / 60).toStringAsFixed(3);
-    } else if (unit1 == 'Minutes' && unit2 == 'Seconds') {
-      result = (number * 60).toStringAsFixed(3);
-    } else if (unit1 == 'Seconds' && unit2 == 'Hours') {
+    } else if (unit1 == 'Second' && unit2 == 'Hour') {
       result = (number / 3600).toStringAsFixed(3);
-    } else if (unit1 == 'Hours' && unit2 == 'Seconds') {
-      result = (number * 3600).toStringAsFixed(3);
-    } else if (unit1 == 'Minutes' && unit2 == 'Hours') {
-      result = (number / 60).toStringAsFixed(3);
-    } else if (unit1 == 'Hours' && unit2 == 'Minutes') {
+    } else if (unit1 == 'Second' && unit2 == 'Day') {
+      result = (number / 86400).toStringAsFixed(3);
+    } else if (unit1 == 'Second' && unit2 == 'Week') {
+      result = (number / 604800).toStringAsFixed(3);
+    } else if (unit1 == 'Minute' && unit2 == 'Second') {
       result = (number * 60).toStringAsFixed(3);
+    } else if (unit1 == 'Minute' && unit2 == 'Hour') {
+      result = (number / 60).toStringAsFixed(3);
+    } else if (unit1 == 'Minute' && unit2 == 'Day') {
+      result = (number / 1440).toStringAsFixed(3);
+    } else if (unit1 == 'Minute' && unit2 == 'Week') {
+      result = (number / 10080).toStringAsFixed(3);
+    } else if (unit1 == 'Hour' && unit2 == 'Second') {
+      result = (number * 3600).toStringAsFixed(3);
+    } else if (unit1 == 'Hour' && unit2 == 'Minute') {
+      result = (number * 60).toStringAsFixed(3);
+    } else if (unit1 == 'Hour' && unit2 == 'Day') {
+      result = (number / 24).toStringAsFixed(3);
+    } else if (unit1 == 'Hour' && unit2 == 'Week') {
+      result = (number / 168).toStringAsFixed(3);
+    } else if (unit1 == 'Day' && unit2 == 'Second') {
+      result = (number * 86400).toStringAsFixed(3);
+    } else if (unit1 == 'Day' && unit2 == 'Minute') {
+      result = (number * 1440).toStringAsFixed(3);
+    } else if (unit1 == 'Day' && unit2 == 'Hour') {
+      result = (number * 24).toStringAsFixed(3);
+    } else if (unit1 == 'Day' && unit2 == 'Week') {
+      result = (number / 7).toStringAsFixed(3);
+    } else if (unit1 == 'Week' && unit2 == 'Second') {
+      result = (number * 604800).toStringAsFixed(3);
+    } else if (unit1 == 'Week' && unit2 == 'Minute') {
+      result = (number * 10080).toStringAsFixed(3);
+    } else if (unit1 == 'Week' && unit2 == 'Hour') {
+      result = (number * 168).toStringAsFixed(3);
+    } else if (unit1 == 'Week' && unit2 == 'Day') {
+      result = (number * 7).toStringAsFixed(3);
     }
     return result;
   }
@@ -33,7 +60,6 @@ class Converter {
       return result;
     }
     var number = int.parse(value);
-    print("Number : $number");
 
     if (unit1 == unit2) {
       result = number.toStringAsFixed(3);

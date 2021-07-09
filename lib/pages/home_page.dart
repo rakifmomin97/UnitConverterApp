@@ -45,7 +45,7 @@ class _HomePageState extends State<HomePage> {
                 isExpanded: true,
                 hint: "Select parameter".text.make().centered(),
                 value: _ParameterValue,
-                items: GetListData.buildParameterMenu(paramList),
+                items: GetListData.buildMenu(paramList),
                 onChanged: (value) {
                   setState(() {
                     _ParameterValue = value;
@@ -62,8 +62,6 @@ class _HomePageState extends State<HomePage> {
                       unit = GetListData.timeItemsList;
                       unitList = GetListData.buildMenu(unit);
                     }
-                    print(GetListData.buildParameterMenu(paramList));
-                    print(unitList);
                   });
                 },
               ).centered(),

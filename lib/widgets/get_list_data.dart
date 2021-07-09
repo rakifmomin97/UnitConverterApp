@@ -7,17 +7,6 @@ class GetListData {
     ListItems(name: "Time", value: 2),
   ];
 
-  static List<DropdownMenuItem<ListItems>> buildParameterMenu(List listItems) {
-    List<DropdownMenuItem<ListItems>> items = [];
-    for (ListItems listItem in listItems) {
-      items.add(DropdownMenuItem(
-        child: Text(listItem.name),
-        value: listItem,
-      ));
-    }
-    return items;
-  }
-
   static List<ListItems> lengthItemsList = [
     ListItems(name: "Kilometer", value: 1),
     ListItems(name: "Meter", value: 2),
@@ -30,9 +19,11 @@ class GetListData {
   ];
 
   static List<ListItems> timeItemsList = [
-    ListItems(name: "Seconds", value: 1),
-    ListItems(name: "Minutes", value: 2),
-    ListItems(name: "Hours", value: 3),
+    ListItems(name: "Second", value: 1),
+    ListItems(name: "Minute", value: 2),
+    ListItems(name: "Hour", value: 3),
+    ListItems(name: "Day", value: 4),
+    ListItems(name: "Week", value: 5),
   ];
 
   static List<DropdownMenuItem<ListItems>> buildMenu(List listItems) {
