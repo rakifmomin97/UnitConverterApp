@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:unit_converter_application/models/list_items.dart';
+import 'package:velocity_x/velocity_x.dart';
 
 class GetListData {
   static List<ListItems> parameterItemsList = [
@@ -42,7 +43,7 @@ class GetListData {
     List<DropdownMenuItem<ListItems>> items = [];
     for (ListItems listItem in listItems) {
       items.add(DropdownMenuItem(
-        child: Text(listItem.name),
+        child: Text(listItem.name).centered(),
         value: listItem,
       ));
     }
