@@ -10,14 +10,17 @@ class GetListData {
   ];
 
   static List<ListItems> lengthItemsList = [
-    ListItems(name: "Kilometer", value: 1),
-    ListItems(name: "Meter", value: 2),
-    ListItems(name: "Centimeter", value: 3),
-    ListItems(name: "Millimeter", value: 4),
-    ListItems(name: "Mile", value: 5),
-    ListItems(name: "Yard", value: 6),
-    ListItems(name: "Foot", value: 7),
-    ListItems(name: "Inch", value: 8),
+    ListItems(name: "Kilometer", value: 0),
+    ListItems(name: "Meter", value: 1),
+    ListItems(name: "Centimeter", value: 2),
+    ListItems(name: "Millimeter", value: 3),
+    ListItems(name: "Micrometer", value: 4),
+    ListItems(name: "Nanometer", value: 5),
+    ListItems(name: "Mile", value: 6),
+    ListItems(name: "Yard", value: 7),
+    ListItems(name: "Foot", value: 8),
+    ListItems(name: "Inch", value: 9),
+    ListItems(name: "Nautical Mile", value: 10),
   ];
 
   static List<ListItems> timeItemsList = [

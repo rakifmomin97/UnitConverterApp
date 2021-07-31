@@ -151,7 +151,7 @@ class _HomePageState extends State<HomePage> {
                             _textField2.text = result;
                           } else if (_ParameterValue.name == 'Length') {
                             var result = Converter.convertLength(
-                                _unit1Value.name, _unit2Value.name, _value1);
+                                _unit1Value.value, _unit2Value.value, _value1);
                             _textField2.text = result;
                           } else if (_ParameterValue.name == 'Area') {
                             var result = Converter.convertArea(
@@ -206,7 +206,7 @@ class _HomePageState extends State<HomePage> {
                           _textField2.text = result;
                         } else if (_ParameterValue.name == 'Length') {
                           var result = Converter.convertLength(
-                              _unit1Value.name, _unit2Value.name, _value1);
+                              _unit1Value.value, _unit2Value.value, _value1);
                           _textField2.text = result;
                         } else if (_ParameterValue.name == 'Area') {
                           var result = Converter.convertArea(

@@ -1,7 +1,20 @@
 class Converter {
-  
   //Code to convert length
-  static String convertLength(String unit1, String unit2, String value) {
+  static var lengthConvert = [
+    1000,
+    1,
+    0.01,
+    0.001,
+    1e-6,
+    1e-9,
+    1609.34,
+    0.9144,
+    0.3048,
+    0.0254,
+    1852
+  ];
+
+  static String convertLength(int unit1, int unit2, String value) {
     String result = "";
 
     if (value == "") {
@@ -9,120 +22,9 @@ class Converter {
     }
     var number = int.parse(value);
 
-    if (unit1 == unit2) {
-      result = number.toStringAsFixed(3);
-    } else if (unit1 == 'Kilometer' && unit2 == 'Meter') {
-      result = (number * 1000).toStringAsFixed(3);
-    } else if (unit1 == 'Kilometer' && unit2 == 'Centimeter') {
-      result = (number * 100000).toStringAsFixed(3);
-    } else if (unit1 == 'Kilometer' && unit2 == 'Millimeter') {
-      result = (number * 1e6).toStringAsFixed(3);
-    } else if (unit1 == 'Kilometer' && unit2 == 'Mile') {
-      result = (number / 1.609).toStringAsFixed(3);
-    } else if (unit1 == 'Kilometer' && unit2 == 'Yard') {
-      result = (number * 1094).toStringAsFixed(3);
-    } else if (unit1 == 'Kilometer' && unit2 == 'Foot') {
-      result = (number * 3281).toStringAsFixed(3);
-    } else if (unit1 == 'Kilometer' && unit2 == 'Inch') {
-      result = (number * 39370).toStringAsFixed(3);
-    } else if (unit1 == 'Meter' && unit2 == 'Kilometer') {
-      result = (number / 1000).toStringAsFixed(3);
-    } else if (unit1 == 'Meter' && unit2 == 'Centimeter') {
-      result = (number * 100).toStringAsFixed(3);
-    } else if (unit1 == 'Meter' && unit2 == 'Millimeter') {
-      result = (number * 1000).toStringAsFixed(3);
-    } else if (unit1 == 'Meter' && unit2 == 'Mile') {
-      result = (number / 1609).toStringAsFixed(3);
-    } else if (unit1 == 'Meter' && unit2 == 'Yard') {
-      result = (number * 1.094).toStringAsFixed(3);
-    } else if (unit1 == 'Meter' && unit2 == 'Inch') {
-      result = (number * 39.37).toStringAsFixed(3);
-    } else if (unit1 == 'Centimeter' && unit2 == 'Kilometer') {
-      result = (number / 100000).toStringAsFixed(3);
-    } else if (unit1 == 'Centimeter' && unit2 == 'Meter') {
-      result = (number / 100).toStringAsFixed(3);
-    } else if (unit1 == 'Centimeter' && unit2 == 'Millimeter') {
-      result = (number * 10).toStringAsFixed(3);
-    } else if (unit1 == 'Centimeter' && unit2 == 'Mile') {
-      result = (number * 160934).toStringAsFixed(3);
-    } else if (unit1 == 'Centimeter' && unit2 == 'Yard') {
-      result = (number / 91.44).toStringAsFixed(3);
-    } else if (unit1 == 'Centimeter' && unit2 == 'Foot') {
-      result = (number / 30.48).toStringAsFixed(3);
-    } else if (unit1 == 'Centimeter' && unit2 == 'Inch') {
-      result = (number / 2.54).toStringAsFixed(3);
-    } else if (unit1 == 'Millimeter' && unit2 == 'Kilometer') {
-      result = (number / 1e6).toStringAsFixed(3);
-    } else if (unit1 == 'Millimeter' && unit2 == 'Meter') {
-      result = (number / 1000).toStringAsFixed(3);
-    } else if (unit1 == 'Millimeter' && unit2 == 'Centimeter') {
-      result = (number * 10).toStringAsFixed(3);
-    } else if (unit1 == 'Millimeter' && unit2 == 'Mile') {
-      result = (number / 1.609e6).toStringAsFixed(3);
-    } else if (unit1 == 'Millimeter' && unit2 == 'Yard') {
-      result = (number / 914).toStringAsFixed(3);
-    } else if (unit1 == 'Millimeter' && unit2 == 'Foot') {
-      result = (number / 305).toStringAsFixed(3);
-    } else if (unit1 == 'Millimeter' && unit2 == 'Inch') {
-      result = (number / 25.4).toStringAsFixed(3);
-    } else if (unit1 == 'Mile' && unit2 == 'Kilometer') {
-      result = (number * 1.609).toStringAsFixed(3);
-    } else if (unit1 == 'Mile' && unit2 == 'Meter') {
-      result = (number * 1609).toStringAsFixed(3);
-    } else if (unit1 == 'Mile' && unit2 == 'Centimeter') {
-      result = (number * 160934).toStringAsFixed(3);
-    } else if (unit1 == 'Mile' && unit2 == 'Millimeter') {
-      result = (number * 1.609e6).toStringAsFixed(3);
-    } else if (unit1 == 'Mile' && unit2 == 'Yard') {
-      result = (number * 1760).toStringAsFixed(3);
-    } else if (unit1 == 'Mile' && unit2 == 'Foot') {
-      result = (number * 5280).toStringAsFixed(3);
-    } else if (unit1 == 'Mile' && unit2 == 'Inch') {
-      result = (number * 63360).toStringAsFixed(3);
-    } else if (unit1 == 'Yard' && unit2 == 'Kilometer') {
-      result = (number / 1094).toStringAsFixed(3);
-    } else if (unit1 == 'Yard' && unit2 == 'Meter') {
-      result = (number / 1.094).toStringAsFixed(3);
-    } else if (unit1 == 'Yard' && unit2 == 'Centimeter') {
-      result = (number * 91.44).toStringAsFixed(3);
-    } else if (unit1 == 'Yard' && unit2 == 'Millimeter') {
-      result = (number * 914).toStringAsFixed(3);
-    } else if (unit1 == 'Yard' && unit2 == 'Mile') {
-      result = (number / 1760).toStringAsFixed(3);
-    } else if (unit1 == 'Yard' && unit2 == 'Foot') {
-      result = (number * 3).toStringAsFixed(3);
-    } else if (unit1 == 'Yard' && unit2 == 'Inch') {
-      result = (number * 36).toStringAsFixed(3);
-    } else if (unit1 == 'Foot' && unit2 == 'Kilometer') {
-      result = (number / 3281).toStringAsFixed(3);
-    } else if (unit1 == 'Foot' && unit2 == 'Meter') {
-      result = (number / 3.281).toStringAsFixed(3);
-    } else if (unit1 == 'Foot' && unit2 == 'Centimeter') {
-      result = (number * 30.48).toStringAsFixed(3);
-    } else if (unit1 == 'Foot' && unit2 == 'Millimeter') {
-      result = (number * 305).toStringAsFixed(3);
-    } else if (unit1 == 'Foot' && unit2 == 'Mile') {
-      result = (number / 5280).toStringAsFixed(3);
-    } else if (unit1 == 'Foot' && unit2 == 'Yard') {
-      result = (number / 3).toStringAsFixed(3);
-    } else if (unit1 == 'Foot' && unit2 == 'Inch') {
-      result = (number * 12).toStringAsFixed(3);
-    } else if (unit1 == 'Inch' && unit2 == 'Kilometer') {
-      result = (number / 39370).toStringAsFixed(3);
-    } else if (unit1 == 'Inch' && unit2 == 'Meter') {
-      result = (number / 39.37).toStringAsFixed(3);
-    } else if (unit1 == 'Inch' && unit2 == 'Centimeter') {
-      result = (number * 2.54).toStringAsFixed(3);
-    } else if (unit1 == 'Inch' && unit2 == 'Millimeter') {
-      result = (number * 25.4).toStringAsFixed(3);
-    } else if (unit1 == 'Inch' && unit2 == 'Mile') {
-      result = (number / 63360).toStringAsFixed(3);
-    } else if (unit1 == 'Inch' && unit2 == 'Yard') {
-      result = (number / 36).toStringAsFixed(3);
-    } else if (unit1 == 'Inch' && unit2 == 'Foot') {
-      result = (number / 12).toStringAsFixed(3);
-    }
-    return result;
+    var res = number * lengthConvert[unit1] * (1 / lengthConvert[unit2]);
+
+    return res.toStringAsFixed(3);
   }
 
   //Code to convert time
@@ -306,5 +208,4 @@ class Converter {
     }
     return result;
   }
-
 }
