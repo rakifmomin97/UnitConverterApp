@@ -1,5 +1,5 @@
 class Converter {
-  //Code to convert length
+  //Arrays for different conversion factors
   static var lengthConvert = [
     1000,
     1,
@@ -98,6 +98,54 @@ class Converter {
 
   static var fuelConvert = [0.425144, 0.354006, 1, 100];
 
+  static var massConvert = [
+    1000,
+    1,
+    0.001,
+    1e-6,
+    1e-9,
+    1016.05,
+    907.185,
+    6.35029,
+    0.453592,
+    0.0283495
+  ];
+
+  static var angleConvert = [
+    1,
+    0.9,
+    0.0572958,
+    0.0166667,
+    57.2958,
+    0.000277778
+  ];
+
+  static var pressureConvert = [1, 1e-5, 0.0689476, 1.01325, 0.00133322];
+
+  static var speedConvert = [0.44704, 0.3048, 1, 0.277778, 0.514444];
+
+  static var volumeConvert = [
+    3.78541,
+    0.946353,
+    0.473176,
+    0.24,
+    0.0295735,
+    0.0147868,
+    0.00492892,
+    1000,
+    1,
+    0.001,
+    4.54609,
+    1.13652,
+    0.568261,
+    0.284131,
+    0.0177582,
+    0.00591939,
+    28.3168,
+    0.0163871
+  ];
+
+  //Function where the conversion logic is written
   static String convert(String units, int unit1, int unit2, String value) {
     String result = "";
 
@@ -140,190 +188,56 @@ class Converter {
         res = number * fuelConvert[unit1] * (1 / fuelConvert[unit2]);
         break;
 
+      case 'Mass':
+        res = number * massConvert[unit1] * (1 / massConvert[unit2]);
+        break;
+
+      case 'Plane Angle':
+        res = number * angleConvert[unit1] * (1 / angleConvert[unit2]);
+        break;
+
+      case 'Pressure':
+        res = number * pressureConvert[unit1] * (1 / pressureConvert[unit2]);
+        break;
+
+      case 'Speed':
+        res = number * speedConvert[unit1] * (1 / speedConvert[unit2]);
+        break;
+
+      case 'Volume':
+        res = number * volumeConvert[unit1] * (1 / volumeConvert[unit2]);
+        break;
+
       default:
     }
     return res.toStringAsFixed(3);
   }
 
-  //Code to convert time
-  static String convertTime(String unit1, String unit2, String value) {
+  //Function for temperature conversion: It has different formula for conversion
+  static String convertTemperature(String unit1, String unit2, String value) {
     String result = "";
 
     if (value == "") {
       return result;
     }
     var number = int.parse(value);
-
+    var res;
     if (unit1 == unit2) {
-      result = number.toStringAsFixed(3);
-    } else if (unit1 == 'Second' && unit2 == 'Minute') {
-      result = (number / 60).toStringAsFixed(3);
-    } else if (unit1 == 'Second' && unit2 == 'Hour') {
-      result = (number / 3600).toStringAsFixed(3);
-    } else if (unit1 == 'Second' && unit2 == 'Day') {
-      result = (number / 86400).toStringAsFixed(3);
-    } else if (unit1 == 'Second' && unit2 == 'Week') {
-      result = (number / 604800).toStringAsFixed(3);
-    } else if (unit1 == 'Minute' && unit2 == 'Second') {
-      result = (number * 60).toStringAsFixed(3);
-    } else if (unit1 == 'Minute' && unit2 == 'Hour') {
-      result = (number / 60).toStringAsFixed(3);
-    } else if (unit1 == 'Minute' && unit2 == 'Day') {
-      result = (number / 1440).toStringAsFixed(3);
-    } else if (unit1 == 'Minute' && unit2 == 'Week') {
-      result = (number / 10080).toStringAsFixed(3);
-    } else if (unit1 == 'Hour' && unit2 == 'Second') {
-      result = (number * 3600).toStringAsFixed(3);
-    } else if (unit1 == 'Hour' && unit2 == 'Minute') {
-      result = (number * 60).toStringAsFixed(3);
-    } else if (unit1 == 'Hour' && unit2 == 'Day') {
-      result = (number / 24).toStringAsFixed(3);
-    } else if (unit1 == 'Hour' && unit2 == 'Week') {
-      result = (number / 168).toStringAsFixed(3);
-    } else if (unit1 == 'Day' && unit2 == 'Second') {
-      result = (number * 86400).toStringAsFixed(3);
-    } else if (unit1 == 'Day' && unit2 == 'Minute') {
-      result = (number * 1440).toStringAsFixed(3);
-    } else if (unit1 == 'Day' && unit2 == 'Hour') {
-      result = (number * 24).toStringAsFixed(3);
-    } else if (unit1 == 'Day' && unit2 == 'Week') {
-      result = (number / 7).toStringAsFixed(3);
-    } else if (unit1 == 'Week' && unit2 == 'Second') {
-      result = (number * 604800).toStringAsFixed(3);
-    } else if (unit1 == 'Week' && unit2 == 'Minute') {
-      result = (number * 10080).toStringAsFixed(3);
-    } else if (unit1 == 'Week' && unit2 == 'Hour') {
-      result = (number * 168).toStringAsFixed(3);
-    } else if (unit1 == 'Week' && unit2 == 'Day') {
-      result = (number * 7).toStringAsFixed(3);
+      return value;
+    } else if (unit1 == 'Celsius' && unit2 == 'Fahrenheit') {
+      res = (number * 9 / 5) + 32;
+    } else if (unit1 == 'Celsius' && unit2 == 'Kelvin') {
+      res = number + 273.15;
+    } else if (unit1 == 'Fahrenheit' && unit2 == 'Celsius') {
+      res = (number - 32) * 5 / 9;
+    } else if (unit1 == 'Fahrenheit' && unit2 == 'Kelvin') {
+      res = (number - 32) * 5 / 9 + 273.15;
+    } else if (unit1 == 'Kelvin' && unit2 == 'Celsius') {
+      res = number - 273.15;
+    } else if (unit1 == 'Kelvin' && unit2 == 'Fahrenheit') {
+      res = (number - 273.15) * 9 / 5 + 32;
     }
-    return result;
-  }
 
-  //Code to convert area
-  static String convertArea(String unit1, String unit2, String value) {
-    String result = "";
-
-    if (value == "") {
-      return result;
-    }
-    var number = int.parse(value);
-
-    if (unit1 == unit2) {
-      result = number.toStringAsFixed(3);
-    } else if (unit1 == 'Square Kilometer' && unit2 == 'Square Meter') {
-      result = (number * 1e6).toStringAsFixed(3);
-    } else if (unit1 == 'Square Kilometer' && unit2 == 'Square Mile') {
-      result = (number / 2.59).toStringAsFixed(3);
-    } else if (unit1 == 'Square Kilometer' && unit2 == 'Square Yard') {
-      result = (number * 1.196e6).toStringAsFixed(3);
-    } else if (unit1 == 'Square Kilometer' && unit2 == 'Square Foot') {
-      result = (number * 1.076e7).toStringAsFixed(3);
-    } else if (unit1 == 'Square Kilometer' && unit2 == 'Square Inch') {
-      result = (number * 1.55e9).toStringAsFixed(3);
-    } else if (unit1 == 'Square Kilometer' && unit2 == 'Hectare') {
-      result = (number * 100).toStringAsFixed(3);
-    } else if (unit1 == 'Square Kilometer' && unit2 == 'Acre') {
-      result = (number * 247).toStringAsFixed(3);
-    } else if (unit1 == 'Square Meter' && unit2 == 'Square Kilometer') {
-      result = (number / 1e6).toStringAsFixed(3);
-    } else if (unit1 == 'Square Meter' && unit2 == 'Square Mile') {
-      result = (number / 2.59e6).toStringAsFixed(3);
-    } else if (unit1 == 'Square Meter' && unit2 == 'Square Yard') {
-      result = (number * 1.196).toStringAsFixed(3);
-    } else if (unit1 == 'Square Meter' && unit2 == 'Square Foot') {
-      result = (number * 10.764).toStringAsFixed(3);
-    } else if (unit1 == 'Square Meter' && unit2 == 'Square Inch') {
-      result = (number * 1550).toStringAsFixed(3);
-    } else if (unit1 == 'Square Meter' && unit2 == 'Hectare') {
-      result = (number / 10000).toStringAsFixed(3);
-    } else if (unit1 == 'Square Meter' && unit2 == 'Acre') {
-      result = (number / 4047).toStringAsFixed(3);
-    } else if (unit1 == 'Square Mile' && unit2 == 'Square Kilometer') {
-      result = (number * 2.59).toStringAsFixed(3);
-    } else if (unit1 == 'Square Mile' && unit2 == 'Square Meter') {
-      result = (number * 2.59e6).toStringAsFixed(3);
-    } else if (unit1 == 'Square Mile' && unit2 == 'Square Yard') {
-      result = (number * 3.098e6).toStringAsFixed(3);
-    } else if (unit1 == 'Square Mile' && unit2 == 'Square Foot') {
-      result = (number * 2.788e7).toStringAsFixed(3);
-    } else if (unit1 == 'Square Mile' && unit2 == 'Square Inch') {
-      result = (number * 4.014e9).toStringAsFixed(3);
-    } else if (unit1 == 'Square Mile' && unit2 == 'Hectare') {
-      result = (number * 259).toStringAsFixed(3);
-    } else if (unit1 == 'Square Mile' && unit2 == 'Acre') {
-      result = (number * 640).toStringAsFixed(3);
-    } else if (unit1 == 'Square Yard' && unit2 == 'Square Kilometer') {
-      result = (number / 1.196e6).toStringAsFixed(3);
-    } else if (unit1 == 'Square Yard' && unit2 == 'Square Meter') {
-      result = (number / 1.196).toStringAsFixed(3);
-    } else if (unit1 == 'Square Yard' && unit2 == 'Square Mile') {
-      result = (number / 3.098e6).toStringAsFixed(3);
-    } else if (unit1 == 'Square Yard' && unit2 == 'Square Foot') {
-      result = (number * 9).toStringAsFixed(3);
-    } else if (unit1 == 'Square Yard' && unit2 == 'Square Inch') {
-      result = (number * 1296).toStringAsFixed(3);
-    } else if (unit1 == 'Square Yard' && unit2 == 'Hectare') {
-      result = (number / 11960).toStringAsFixed(3);
-    } else if (unit1 == 'Square Yard' && unit2 == 'Acre') {
-      result = (number / 4840).toStringAsFixed(3);
-    } else if (unit1 == 'Square Foot' && unit2 == 'Square Kilometer') {
-      result = (number / 1.076e7).toStringAsFixed(3);
-    } else if (unit1 == 'Square Foot' && unit2 == 'Square Meter') {
-      result = (number / 10.764).toStringAsFixed(3);
-    } else if (unit1 == 'Square Foot' && unit2 == 'Square Mile') {
-      result = (number / 2.788e7).toStringAsFixed(3);
-    } else if (unit1 == 'Square Foot' && unit2 == 'Square Yard') {
-      result = (number / 9).toStringAsFixed(3);
-    } else if (unit1 == 'Square Foot' && unit2 == 'Square Inch') {
-      result = (number * 144).toStringAsFixed(3);
-    } else if (unit1 == 'Square Foot' && unit2 == 'Hectare') {
-      result = (number / 107639).toStringAsFixed(3);
-    } else if (unit1 == 'Square Foot' && unit2 == 'Acre') {
-      result = (number / 43560).toStringAsFixed(3);
-    } else if (unit1 == 'Square Inch' && unit2 == 'Square Kilometer') {
-      result = (number / 1.55e9).toStringAsFixed(3);
-    } else if (unit1 == 'Square Inch' && unit2 == 'Square Meter') {
-      result = (number / 1550).toStringAsFixed(3);
-    } else if (unit1 == 'Square Inch' && unit2 == 'Square Mile') {
-      result = (number / 4.014e9).toStringAsFixed(3);
-    } else if (unit1 == 'Square Inch' && unit2 == 'Square Yard') {
-      result = (number / 1296).toStringAsFixed(3);
-    } else if (unit1 == 'Square Inch' && unit2 == 'Square Foot') {
-      result = (number / 144).toStringAsFixed(3);
-    } else if (unit1 == 'Square Inch' && unit2 == 'Hectare') {
-      result = (number / 1.55e7).toStringAsFixed(3);
-    } else if (unit1 == 'Square Inch' && unit2 == 'Acre') {
-      result = (number / 6.273e6).toStringAsFixed(3);
-    } else if (unit1 == 'Hectare' && unit2 == 'Square Kilometer') {
-      result = (number / 100).toStringAsFixed(3);
-    } else if (unit1 == 'Hectare' && unit2 == 'Square Meter') {
-      result = (number * 10000).toStringAsFixed(3);
-    } else if (unit1 == 'Hectare' && unit2 == 'Square Mile') {
-      result = (number / 259).toStringAsFixed(3);
-    } else if (unit1 == 'Hectare' && unit2 == 'Square Yard') {
-      result = (number * 11960).toStringAsFixed(3);
-    } else if (unit1 == 'Hectare' && unit2 == 'Square Foot') {
-      result = (number * 107639).toStringAsFixed(3);
-    } else if (unit1 == 'Hectare' && unit2 == 'Square Inch') {
-      result = (number * 1.55e7).toStringAsFixed(3);
-    } else if (unit1 == 'Hectare' && unit2 == 'Acre') {
-      result = (number * 2.471).toStringAsFixed(3);
-    } else if (unit1 == 'Acre' && unit2 == 'Square Kilometer') {
-      result = (number / 247).toStringAsFixed(3);
-    } else if (unit1 == 'Acre' && unit2 == 'Square Meter') {
-      result = (number * 4047).toStringAsFixed(3);
-    } else if (unit1 == 'Acre' && unit2 == 'Square Mile') {
-      result = (number / 640).toStringAsFixed(3);
-    } else if (unit1 == 'Acre' && unit2 == 'Square Yard') {
-      result = (number * 4840).toStringAsFixed(3);
-    } else if (unit1 == 'Acre' && unit2 == 'Square Foot') {
-      result = (number * 43560).toStringAsFixed(3);
-    } else if (unit1 == 'Acre' && unit2 == 'Square Inch') {
-      result = (number * 6.273e6).toStringAsFixed(3);
-    } else if (unit1 == 'Acre' && unit2 == 'Hectare') {
-      result = (number / 2.471).toStringAsFixed(3);
-    }
-    return result;
+    return res.toStringAsFixed(3);
   }
 }

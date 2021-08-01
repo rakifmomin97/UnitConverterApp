@@ -11,7 +11,13 @@ class GetListData {
     ListItems(name: "Frequency", value: 4),
     ListItems(name: "Fuel Economy", value: 5),
     ListItems(name: "Length", value: 6),
+    ListItems(name: "Mass", value: 7),
+    ListItems(name: "Plane Angle", value: 8),
+    ListItems(name: "Pressure", value: 9),
+    ListItems(name: "Speed", value: 10),
+    ListItems(name: "Temperature", value: 11),
     ListItems(name: "Time", value: 12),
+    ListItems(name: "Volume", value: 13),
   ];
 
   static List<ListItems> lengthItemsList = [
@@ -120,6 +126,71 @@ class GetListData {
     ListItems(name: "Miles per gallon (Imperial)", value: 1),
     ListItems(name: "Kilometer per liter", value: 2),
     ListItems(name: "Liter per 100 kilometers", value: 3),
+  ];
+
+  static List<ListItems> massItemsList = [
+    ListItems(name: "Tonne", value: 0),
+    ListItems(name: "Kilogram", value: 1),
+    ListItems(name: "Gram", value: 2),
+    ListItems(name: "Milligram", value: 3),
+    ListItems(name: "Microgram", value: 4),
+    ListItems(name: "Imperial ton", value: 5),
+    ListItems(name: "US ton", value: 6),
+    ListItems(name: "Stone", value: 7),
+    ListItems(name: "Pound", value: 8),
+    ListItems(name: "Punce", value: 9),
+  ];
+
+  static List<ListItems> angleItemsList = [
+    ListItems(name: "Degree", value: 0),
+    ListItems(name: "Gradian", value: 1),
+    ListItems(name: "Milliradian", value: 2),
+    ListItems(name: "Minute of arc", value: 3),
+    ListItems(name: "Radian", value: 4),
+    ListItems(name: "Second of arc", value: 5),
+  ];
+
+  static List<ListItems> pressureItemsList = [
+    ListItems(name: "Bar", value: 0),
+    ListItems(name: "Pascal", value: 1),
+    ListItems(name: "Pound per square inch", value: 2),
+    ListItems(name: "Standard atmosphere", value: 3),
+    ListItems(name: "Torr", value: 4),
+  ];
+
+  static List<ListItems> speedItemsList = [
+    ListItems(name: "Miles per hour", value: 0),
+    ListItems(name: "Foot per second", value: 1),
+    ListItems(name: "Meter per seond", value: 2),
+    ListItems(name: "Kilometer per hour", value: 3),
+    ListItems(name: "Knot", value: 4),
+  ];
+
+  static List<ListItems> temperatureItemsList = [
+    ListItems(name: "Celsius", value: 0),
+    ListItems(name: "Fahrenheit", value: 1),
+    ListItems(name: "Kelvin", value: 2),
+  ];
+
+  static List<ListItems> volumeItemsList = [
+    ListItems(name: "US liquid gallon", value: 0),
+    ListItems(name: "US liquid quart", value: 1),
+    ListItems(name: "US liquid pint", value: 2),
+    ListItems(name: "US legal cup", value: 3),
+    ListItems(name: "Fluid ounce", value: 4),
+    ListItems(name: "US tablespoon", value: 5),
+    ListItems(name: "US teaspoon", value: 6),
+    ListItems(name: "Cubic meter", value: 7),
+    ListItems(name: "Liter", value: 8),
+    ListItems(name: "Millileter", value: 9),
+    ListItems(name: "Imperial gallon", value: 10),
+    ListItems(name: "Imperial quart", value: 11),
+    ListItems(name: "Imperial pint", value: 12),
+    ListItems(name: "Imperial cup", value: 13),
+    ListItems(name: "Imperial tablespoon", value: 14),
+    ListItems(name: "Imperial teaspoon", value: 15),
+    ListItems(name: "Cubic foot", value: 16),
+    ListItems(name: "Cubic inch", value: 17),
   ];
 
   static List<DropdownMenuItem<ListItems>> buildMenu(List listItems) {
