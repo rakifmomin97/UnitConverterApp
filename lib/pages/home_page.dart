@@ -34,12 +34,13 @@ class _HomePageState extends State<HomePage> {
         elevation: 0,
       ),
       body: Container(
+        color: Colors.white,
         child: Column(
           children: [
             //Parameter drop down menu
             Card(
               elevation: 2,
-              color: Colors.cyan[200],
+              color: Colors.grey[400],
               child: Column(children: [
                 Container(
                   height: 40,
@@ -112,7 +113,7 @@ class _HomePageState extends State<HomePage> {
                   height: 40,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(10),
-                    color: Colors.green[600],
+                    color: Colors.teal[600],
                     border: Border.all(),
                   ),
                   padding: EdgeInsets.only(left: 10, right: 10),
@@ -149,7 +150,7 @@ class _HomePageState extends State<HomePage> {
                   height: 40,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(10),
-                    color: Colors.green[600],
+                    color: Colors.teal[600],
                     border: Border.all(),
                   ),
                   padding: EdgeInsets.only(left: 10, right: 10),
