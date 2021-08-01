@@ -67,14 +67,23 @@ class _HomePageState extends State<HomePage> {
                         }
                         if (_ParameterValue.name == 'Length') {
                           unit = GetListData.lengthItemsList;
-                          unitList = GetListData.buildMenu(unit);
                         } else if (_ParameterValue.name == 'Time') {
                           unit = GetListData.timeItemsList;
-                          unitList = GetListData.buildMenu(unit);
                         } else if (_ParameterValue.name == 'Area') {
                           unit = GetListData.areaItemsList;
-                          unitList = GetListData.buildMenu(unit);
+                        } else if (_ParameterValue.name ==
+                            'Data Transfer Rate') {
+                          unit = GetListData.dataItemsList;
+                        } else if (_ParameterValue.name == 'Digital Storage') {
+                          unit = GetListData.storageItemsList;
+                        } else if (_ParameterValue.name == 'Energy') {
+                          unit = GetListData.energyItemsList;
+                        } else if (_ParameterValue.name == 'Frequency') {
+                          unit = GetListData.frequencyItemsList;
+                        } else if (_ParameterValue.name == 'Fuel Economy') {
+                          unit = GetListData.fuelItemsList;
                         }
+                        unitList = GetListData.buildMenu(unit);
                       });
                     },
                   ).centered(),
@@ -145,19 +154,22 @@ class _HomePageState extends State<HomePage> {
                         _unit2Value = value;
                         print(_unit2Value.name);
                         if (_textField1.text.isNotEmpty) {
-                          if (_ParameterValue.name == 'Time') {
-                            var result = Converter.convertTime(
-                                _unit1Value.name, _unit2Value.name, _value1);
-                            _textField2.text = result;
-                          } else if (_ParameterValue.name == 'Length') {
-                            var result = Converter.convertLength(
-                                _unit1Value.value, _unit2Value.value, _value1);
-                            _textField2.text = result;
-                          } else if (_ParameterValue.name == 'Area') {
-                            var result = Converter.convertArea(
-                                _unit1Value.name, _unit2Value.name, _value1);
-                            _textField2.text = result;
-                          }
+                          // if (_ParameterValue.name == 'Time') {
+                          //   var result = Converter.convertTime(
+                          //       _unit1Value.name, _unit2Value.name, _value1);
+                          //   _textField2.text = result;
+                          // } else if (_ParameterValue.name == 'Length') {
+                          //   var result = Converter.convertLength(
+                          //       _unit1Value.value, _unit2Value.value, _value1);
+                          //   _textField2.text = result;
+                          // } else if (_ParameterValue.name == 'Area') {
+                          //   var result = Converter.convertArea(
+                          //       _unit1Value.name, _unit2Value.name, _value1);
+                          //   _textField2.text = result;
+                          // }
+                          var result = Converter.convert(_ParameterValue.name,
+                              _unit1Value.value, _unit2Value.value, _value1);
+                          _textField2.text = result;
                         }
                       });
                     },
@@ -200,19 +212,22 @@ class _HomePageState extends State<HomePage> {
                           valError = false;
                         });
 
-                        if (_ParameterValue.name == 'Time') {
-                          var result = Converter.convertTime(
-                              _unit1Value.name, _unit2Value.name, _value1);
-                          _textField2.text = result;
-                        } else if (_ParameterValue.name == 'Length') {
-                          var result = Converter.convertLength(
-                              _unit1Value.value, _unit2Value.value, _value1);
-                          _textField2.text = result;
-                        } else if (_ParameterValue.name == 'Area') {
-                          var result = Converter.convertArea(
-                              _unit1Value.name, _unit2Value.name, _value1);
-                          _textField2.text = result;
-                        }
+                        // if (_ParameterValue.name == 'Time') {
+                        //   var result = Converter.convertTime(
+                        //       _unit1Value.name, _unit2Value.name, _value1);
+                        //   _textField2.text = result;
+                        // } else if (_ParameterValue.name == 'Length') {
+                        //   var result = Converter.convertLength(
+                        //       _unit1Value.value, _unit2Value.value, _value1);
+                        //   _textField2.text = result;
+                        // } else if (_ParameterValue.name == 'Area') {
+                        //   var result = Converter.convertArea(
+                        //       _unit1Value.name, _unit2Value.name, _value1);
+                        //   _textField2.text = result;
+                        // }
+                        var result = Converter.convert(_ParameterValue.name,
+                            _unit1Value.value, _unit2Value.value, _value1);
+                        _textField2.text = result;
                       }
                     },
                   ),

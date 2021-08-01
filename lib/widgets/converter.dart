@@ -14,16 +14,134 @@ class Converter {
     1852
   ];
 
-  static String convertLength(int unit1, int unit2, String value) {
+  static var timeConvert = [
+    1.6667e-11,
+    1.6667e-8,
+    1.6667e-5,
+    0.0166667,
+    1,
+    60,
+    1440,
+    10080,
+    43800,
+    525600,
+    5.256e6,
+    5.256e7
+  ];
+
+  static var areaConvert = [
+    1e6,
+    1,
+    2.59e6,
+    0.836127,
+    0.092903,
+    0.00064516,
+    1000,
+    4046.86
+  ];
+
+  static var dataConvert = [
+    1.25e-7,
+    0.000125,
+    0.001,
+    0.000128,
+    0.125,
+    1,
+    0.131072,
+    125,
+    1000,
+    134.218,
+    125000,
+    1e6,
+    137439
+  ];
+
+  static var storageConvert = [
+    0.125,
+    125,
+    128,
+    125000,
+    131072,
+    1.25e8,
+    1.342e8,
+    1.25e11,
+    1.374e11,
+    1.25e14,
+    1.407e14,
+    1,
+    1000,
+    1024,
+    1e6,
+    1.049e6,
+    1e9,
+    1.074e9,
+    1e12,
+    1.1e12,
+    1e15,
+    1.126e15
+  ];
+
+  static var energyConvert = [
+    1,
+    1000,
+    4.184,
+    4184,
+    3600,
+    3.6e6,
+    1.6022e-19,
+    1055.06,
+    1.055e8,
+    1.35582
+  ];
+
+  static var frequencyConvert = [1, 1000, 1e6, 1e9];
+
+  static var fuelConvert = [0.425144, 0.354006, 1, 100];
+
+  static String convert(String units, int unit1, int unit2, String value) {
     String result = "";
 
     if (value == "") {
       return result;
     }
     var number = int.parse(value);
+    var res;
 
-    var res = number * lengthConvert[unit1] * (1 / lengthConvert[unit2]);
+    switch (units) {
+      case 'Length':
+        res = number * lengthConvert[unit1] * (1 / lengthConvert[unit2]);
+        break;
 
+      case 'Time':
+        res = number * timeConvert[unit1] * (1 / timeConvert[unit2]);
+        break;
+
+      case 'Area':
+        res = number * areaConvert[unit1] * (1 / areaConvert[unit2]);
+        break;
+
+      case 'Data Transfer Rate':
+        res = number * dataConvert[unit1] * (1 / dataConvert[unit2]);
+        break;
+
+      case 'Digital Storage':
+        res = number * storageConvert[unit1] * (1 / storageConvert[unit2]);
+        break;
+
+      case 'Energy':
+        res = number * energyConvert[unit1] * (1 / energyConvert[unit2]);
+        break;
+
+      case 'Frequency':
+        res = number * frequencyConvert[unit1] * (1 / frequencyConvert[unit2]);
+        break;
+
+      case 'Fuel Economy':
+        res = number * fuelConvert[unit1] * (1 / fuelConvert[unit2]);
+        break;
+
+      default:
+    }
     return res.toStringAsFixed(3);
   }
 
