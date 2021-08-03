@@ -25,6 +25,14 @@ class _HomePageState extends State<HomePage> {
 
   String result = "";
 
+  void initState() {
+    unit = GetListData.areaItemsList;
+    unitList = GetListData.buildMenu(unit);
+    _ParameterValue = paramList.first;
+    _unit1Value = unit.first;
+    _unit2Value = unit[1];
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -53,7 +61,6 @@ class _HomePageState extends State<HomePage> {
                   child: DropdownButtonHideUnderline(
                     child: DropdownButton<ListItems>(
                       isExpanded: true,
-                      hint: "Select Parameter".text.make().centered(),
                       value: _ParameterValue,
                       items: GetListData.buildMenu(paramList),
                       onChanged: (value) {
@@ -101,6 +108,8 @@ class _HomePageState extends State<HomePage> {
                             unit = GetListData.volumeItemsList;
                           }
                           unitList = GetListData.buildMenu(unit);
+                          _unit1Value = unit.first;
+                          _unit2Value = unit[1];
                         });
                       },
                     ).centered(),
@@ -119,10 +128,8 @@ class _HomePageState extends State<HomePage> {
                   padding: EdgeInsets.only(left: 10, right: 10),
                   child: DropdownButtonHideUnderline(
                     child: DropdownButton<ListItems>(
-                      disabledHint:
-                          "Select Parameter First".text.make().centered(),
+                      //disabledHint: "Select Parameter First".text.make().centered(),
                       isExpanded: true,
-                      hint: "Select Unit".text.make().centered(),
                       value: _unit1Value,
                       items: unitList,
                       onChanged: (value) {
@@ -156,10 +163,8 @@ class _HomePageState extends State<HomePage> {
                   padding: EdgeInsets.only(left: 10, right: 10),
                   child: DropdownButtonHideUnderline(
                     child: DropdownButton<ListItems>(
-                      disabledHint:
-                          "Select Parameter First".text.make().centered(),
+                      //disabledHint:"Select Parameter First".text.make().centered(),
                       isExpanded: true,
-                      hint: "Select Unit".text.make().centered(),
                       value: _unit2Value,
                       items: unitList,
                       onChanged: (value) {
