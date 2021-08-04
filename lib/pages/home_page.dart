@@ -49,6 +49,7 @@ class _HomePageState extends State<HomePage> {
           color: Colors.white,
           child: Column(
             children: [
+              20.heightBox,
               Container(
                 height: 40,
                 decoration: BoxDecoration(
@@ -222,7 +223,6 @@ class _HomePageState extends State<HomePage> {
               Row(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  //Textbox for input
                   Expanded(
                     flex: 2,
                     child: Container(
