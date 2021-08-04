@@ -31,6 +31,9 @@ class _HomePageState extends State<HomePage> {
     _ParameterValue = paramList.first;
     _unit1Value = unit.first;
     _unit2Value = unit[1];
+    _textField1.text = _value1 = '1';
+    _textField2.text = Converter.convert(
+        _ParameterValue.name, _unit1Value.value, _unit2Value.value, _value1);
   }
 
   @override
@@ -72,10 +75,6 @@ class _HomePageState extends State<HomePage> {
                           _ParameterValue = value;
                           _textField1.text = "";
                           _textField2.text = "";
-                          if (_unit1Value != null || _unit2Value != null) {
-                            _unit1Value = null;
-                            _unit2Value = null;
-                          }
                           if (_ParameterValue.name == 'Length') {
                             unit = GetListData.lengthItemsList;
                           } else if (_ParameterValue.name == 'Time') {
@@ -110,6 +109,17 @@ class _HomePageState extends State<HomePage> {
                           unitList = GetListData.buildMenu(unit);
                           _unit1Value = unit.first;
                           _unit2Value = unit[1];
+                          _textField1.text = _value1 = '1';
+                          if (_ParameterValue.name == 'Temperature') {
+                            _textField2.text = Converter.convertTemperature(
+                                _unit1Value.name, _unit2Value.name, _value1);
+                          } else {
+                            _textField2.text = Converter.convert(
+                                _ParameterValue.name,
+                                _unit1Value.value,
+                                _unit2Value.value,
+                                _value1);
+                          }
                         });
                       },
                     ).centered(),
@@ -128,7 +138,6 @@ class _HomePageState extends State<HomePage> {
                   padding: EdgeInsets.only(left: 10, right: 10),
                   child: DropdownButtonHideUnderline(
                     child: DropdownButton<ListItems>(
-                      //disabledHint: "Select Parameter First".text.make().centered(),
                       isExpanded: true,
                       value: _unit1Value,
                       items: unitList,
@@ -139,8 +148,17 @@ class _HomePageState extends State<HomePage> {
                         }
                         setState(() {
                           _unit1Value = value;
-                          _textField1.text = "";
-                          _textField2.text = "";
+                          _textField1.text = _value1 = "1";
+                          if (_ParameterValue.name == 'Temperature') {
+                            _textField2.text = Converter.convertTemperature(
+                                _unit1Value.name, _unit2Value.name, _value1);
+                          } else {
+                            _textField2.text = Converter.convert(
+                                _ParameterValue.name,
+                                _unit1Value.value,
+                                _unit2Value.value,
+                                _value1);
+                          }
                         });
                       },
                     ).centered(),
@@ -163,7 +181,6 @@ class _HomePageState extends State<HomePage> {
                   padding: EdgeInsets.only(left: 10, right: 10),
                   child: DropdownButtonHideUnderline(
                     child: DropdownButton<ListItems>(
-                      //disabledHint:"Select Parameter First".text.make().centered(),
                       isExpanded: true,
                       value: _unit2Value,
                       items: unitList,
@@ -174,7 +191,6 @@ class _HomePageState extends State<HomePage> {
                         }
                         setState(() {
                           _unit2Value = value;
-                          print(_unit2Value.name);
                           if (_textField1.text.isNotEmpty) {
                             if (_ParameterValue.name == 'Temperature') {
                               result = Converter.convertTemperature(
@@ -205,29 +221,14 @@ class _HomePageState extends State<HomePage> {
                   child: new Padding(
                     padding: const EdgeInsets.all(20.0),
                     child: TextField(
-                      controller: _textField1,
-                      decoration: InputDecoration(
-                        hintText: "Enter Value",
-                        errorText: valError ? getErrorText() : null,
-                      ),
-                      keyboardType: TextInputType.number,
-                      onChanged: (value) {
-                        _value1 = value;
-                        if (_textField1.text.isEmpty) {
-                          _textField2.text = "";
-                          setState(() {
-                            valError = false;
-                          });
-                        } else if (_ParameterValue == null ||
-                            _unit1Value == null ||
-                            _unit2Value == null) {
-                          setState(() {
-                            valError = true;
-                          });
-                        } else {
-                          setState(() {
-                            valError = false;
-                          });
+                        controller: _textField1,
+                        decoration: InputDecoration(
+                          hintText: "Enter Value",
+                          //errorText: valError ? getErrorText() : null,
+                        ),
+                        keyboardType: TextInputType.number,
+                        onChanged: (value) {
+                          _value1 = value;
                           if (_ParameterValue.name == 'Temperature') {
                             result = Converter.convertTemperature(
                                 _unit1Value.name, _unit2Value.name, _value1);
@@ -236,9 +237,7 @@ class _HomePageState extends State<HomePage> {
                                 _unit1Value.value, _unit2Value.value, _value1);
                           }
                           _textField2.text = result;
-                        }
-                      },
-                    ),
+                        }),
                   ),
                 ),
 
@@ -267,15 +266,5 @@ class _HomePageState extends State<HomePage> {
         ),
       ),
     );
-  }
-
-  String getErrorText() {
-    if (_ParameterValue == null) {
-      return "Select Parameter First";
-    } else if (_unit1Value == null || _unit2Value == null) {
-      return "Select Unit First";
-    } else {
-      return "";
-    }
   }
 }
