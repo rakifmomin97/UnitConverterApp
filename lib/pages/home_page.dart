@@ -40,30 +40,85 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: "Unit Converter".text.xl4.black.make().centered(),
-        backgroundColor: Colors.white,
+        title: "Unit Converter".text.xl4.white.make().centered(),
+        backgroundColor: Colors.blue,
         elevation: 0,
       ),
-      body: Container(
-        color: Colors.white,
-        child: Column(
-          children: [
-            //Parameter drop down menu
-            Card(
-              elevation: 2,
-              color: Colors.grey[400],
-              child: Column(children: [
+      body: SingleChildScrollView(
+        child: Container(
+          color: Colors.white,
+          child: Column(
+            children: [
+              10.heightBox,
+              Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  //Textbox for input
+                  Expanded(
+                    child: new Padding(
+                      padding: const EdgeInsets.all(20.0),
+                      child: TextField(
+                          controller: _textField1,
+                          decoration: InputDecoration(
+                            hintText: "Enter Value",
+                            //errorText: valError ? getErrorText() : null,
+                          ),
+                          keyboardType: TextInputType.number,
+                          onChanged: (value) {
+                            _value1 = value;
+                            if (_ParameterValue.name == 'Temperature') {
+                              result = Converter.convertTemperature(
+                                  _unit1Value.name, _unit2Value.name, _value1);
+                            } else {
+                              result = Converter.convert(
+                                  _ParameterValue.name,
+                                  _unit1Value.value,
+                                  _unit2Value.value,
+                                  _value1);
+                            }
+                            _textField2.text = result;
+                          }),
+                    ),
+                  ),
+
+                  //Icon between text boxes
+                  Icon(Icons.arrow_right_alt),
+
+                  //Textbox for result
+                  Expanded(
+                    child: new Padding(
+                      padding: const EdgeInsets.all(20.0),
+                      child: TextField(
+                        controller: _textField2,
+                        enabled: false,
+                        decoration: InputDecoration(
+                          hintText: "Result",
+                        ),
+                        onChanged: (value) {
+                          _value2 = value;
+                        },
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+
+              20.heightBox,
+              //Parameter drop down menu
+              Column(children: [
                 Container(
                   height: 40,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(10),
-                    color: Colors.blue[700],
-                    border: Border.all(),
+                    color: Colors.white,
+                    border: Border.all(color: Colors.blue, width: 2),
                   ),
                   padding: EdgeInsets.only(left: 10, right: 10),
                   child: DropdownButtonHideUnderline(
                     child: DropdownButton<ListItems>(
                       isExpanded: true,
+                      icon: Icon(Icons.arrow_drop_down),
+                      iconEnabledColor: Colors.blue,
                       value: _ParameterValue,
                       items: GetListData.buildMenu(paramList),
                       onChanged: (value) {
@@ -132,13 +187,15 @@ class _HomePageState extends State<HomePage> {
                   height: 40,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(10),
-                    color: Colors.teal[600],
-                    border: Border.all(),
+                    color: Colors.white,
+                    border: Border.all(color: Colors.blue, width: 2),
                   ),
                   padding: EdgeInsets.only(left: 10, right: 10),
                   child: DropdownButtonHideUnderline(
                     child: DropdownButton<ListItems>(
                       isExpanded: true,
+                      icon: Icon(Icons.arrow_drop_down),
+                      iconEnabledColor: Colors.blue,
                       value: _unit1Value,
                       items: unitList,
                       onChanged: (value) {
@@ -175,13 +232,15 @@ class _HomePageState extends State<HomePage> {
                   height: 40,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(10),
-                    color: Colors.teal[600],
-                    border: Border.all(),
+                    color: Colors.white,
+                    border: Border.all(color: Colors.blue, width: 2),
                   ),
                   padding: EdgeInsets.only(left: 10, right: 10),
                   child: DropdownButtonHideUnderline(
                     child: DropdownButton<ListItems>(
                       isExpanded: true,
+                      icon: Icon(Icons.arrow_drop_down),
+                      iconEnabledColor: Colors.blue,
                       value: _unit2Value,
                       items: unitList,
                       onChanged: (value) {
@@ -210,59 +269,10 @@ class _HomePageState extends State<HomePage> {
                   ),
                 ).px32(),
               ]).p12(),
-            ).p(8),
 
-            // Row containing text boxes
-            Row(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                //Textbox for input
-                Expanded(
-                  child: new Padding(
-                    padding: const EdgeInsets.all(20.0),
-                    child: TextField(
-                        controller: _textField1,
-                        decoration: InputDecoration(
-                          hintText: "Enter Value",
-                          //errorText: valError ? getErrorText() : null,
-                        ),
-                        keyboardType: TextInputType.number,
-                        onChanged: (value) {
-                          _value1 = value;
-                          if (_ParameterValue.name == 'Temperature') {
-                            result = Converter.convertTemperature(
-                                _unit1Value.name, _unit2Value.name, _value1);
-                          } else {
-                            result = Converter.convert(_ParameterValue.name,
-                                _unit1Value.value, _unit2Value.value, _value1);
-                          }
-                          _textField2.text = result;
-                        }),
-                  ),
-                ),
-
-                //Icon between text boxes
-                Icon(Icons.arrow_right_alt),
-
-                //Textbox for result
-                Expanded(
-                  child: new Padding(
-                    padding: const EdgeInsets.all(20.0),
-                    child: TextField(
-                      controller: _textField2,
-                      enabled: false,
-                      decoration: InputDecoration(
-                        hintText: "Result",
-                      ),
-                      onChanged: (value) {
-                        _value2 = value;
-                      },
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ],
+              // Row containing text boxes
+            ],
+          ),
         ),
       ),
     );
