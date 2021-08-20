@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.unit_converter_application">
+    package="com.fladdra.unit_converter_application">
    <application
-        android:label="unit_converter_application"
+        android:label="Unit Converter"
         android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"
